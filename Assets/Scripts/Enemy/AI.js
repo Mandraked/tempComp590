@@ -7,7 +7,7 @@ public var resetStoppingDistance : float = 1.0;
 
 private var sight : Sight;
 private var nav : NavMeshAgent;
-private var particles : ParticleSystem;
+private var enemyParticleSystem : ParticleSystem;
 private var player : GameObject;
 
 private var resetPosition : Vector3;
@@ -16,7 +16,7 @@ private var resetRotation : Quaternion;
 function Awake () {
     sight = GetComponent(Sight);
     nav = GetComponent(NavMeshAgent);
-    particles = transform.Find("EnemyVisual").GetComponent(ParticleSystem);
+    enemyParticleSystem = transform.Find("Graphics").GetComponent(ParticleSystem);
     player = GameObject.FindGameObjectWithTag("Player");
 
     resetPosition = transform.position;
@@ -24,13 +24,13 @@ function Awake () {
 }
 
 function Update () {
-    particles.transform.Rotate(0, 60 * Time.deltaTime, 0);
+    enemyParticleSystem.transform.Rotate(0, 60 * Time.deltaTime, 0);
 
     if (sight.isPlayerInSight()) {
-        particles.startColor = Color.red;
+        enemyParticleSystem.startColor = Color.red;
         Follow();
     } else {
-        particles.startColor = Color.cyan;
+        enemyParticleSystem.startColor = Color.cyan;
         Abandon();
     }
 }

@@ -9,12 +9,12 @@
    private var startTime : float; 
    
    function Start () {
-       startTime = Time.time; 
+       startTime = Time.time;
    } 
    
    function FixedUpdate () {
        // Move forward 
-       this.gameObject.transform.position -= Speed * this.gameObject.transform.right;
+       this.gameObject.transform.position += Speed * this.gameObject.transform.forward;
        
        // If the Bullet has existed as long as SecondsUntilDestroy, destroy it 
        if (Time.time - startTime >= SecondsUntilDestroy) {
